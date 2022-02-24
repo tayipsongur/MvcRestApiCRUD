@@ -1,0 +1,57 @@
+﻿@model MvcCRUD.Models.MvcCalisanModel
+
+@{
+    ViewBag.Title = "Ekle";
+}
+
+<h2>Ekle</h2>
+
+
+
+
+<div class="form-body">
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.CalisanID)
+        <div class="form-control" style="background-color:cornflowerblue;">
+            @Html.LabelFor(model => model.AdSoyad)
+            @Html.TextBoxFor(model => model.AdSoyad, new {@class="form-control", placeholder = "Ad Soyad" })
+            @Html.ValidationMessageFor(model => model.AdSoyad)
+        </div>
+        <div class="form-control" style="background-color:cornflowerblue;">
+            @Html.LabelFor(model => model.Pozisyonu)
+            @Html.TextBoxFor(model => model.Pozisyonu, new { @class = "form-control", placeholder = "Pozisyonu" })
+            @Html.ValidationMessageFor(x => x.Pozisyonu)
+        </div>
+        <div class="form-control" style="background-color:cornflowerblue;">
+            @Html.LabelFor(model => model.Yasi)
+            @Html.TextBoxFor(model => model.Yasi, new { @class = "form-control", placeholder = "Yaşı" })
+            @Html.ValidationMessageFor(x => x.Yasi)
+        </div>
+        <div class="form-control" style="background-color:cornflowerblue;">
+            @Html.LabelFor(model => model.Maas)
+            @Html.TextBoxFor(model => model.Maas, new { @class = "form-control", placeholder = "Maaş" })
+            @Html.ValidationMessageFor(x => x.Maas)
+        </div>
+
+        <div class="form-control">
+            
+            <input type="submit" value="Kaydet" class="btn accordion-button"/> 
+            <input type="reset" value="Temizle" class="btn accordion-button"/> 
+
+        </div>
+    }
+
+
+
+</div>
+
+<br />
+<div>
+    @Html.ActionLink("Geri Dön", "Index",null,new {@class="btn btn-warning" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

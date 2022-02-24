@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MvcCRUD.Models.MvcCalisanModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+  
+    <a href=" @Url.Action("Ekle","Calisanlar")" class="btn btn-primary"><i class="fa fa-plus-square"></i> Çalışan Ekle </a>
+</p>
+<table class="table table-striped">
+    <thead class="table-danger">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdSoyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pozisyonu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maas)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pozisyonu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelıtem => item.Yasi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelıtem => item.Maas)
+                </td>
+                <td>
+
+                  <a href="@Url.Action("Ekle","Calisanlar", new {id=item.CalisanID })" class="btn btn-success"><i class="fa fa-comment-edit"></i> Güncelle</a>                   
+                     <a onclick="Sil(@item.CalisanID)" class="btn btn-danger"><i class="fa fa-trash"></i> Sil</a>
+
+                </td>
+            </tr>
+        }
+
+</table>
+@section scripts{
+    <script>
+
+        $(function() {
+            var succesMessage = '@TempData["SuccessMessage"]';
+            if (succesMessage != '')
+            {
+                alertify.success(succesMessage);
+            }
+        });
+        function Sil(id) {
+            alertify.confirm('Silme işlemi', 'Kaydı silmek istiyor musunuz ?', function () {
+                window.location.href = '@Url.Action("Sil","Calisanlar")/' + id;
+            }, null);
+        }
+
+    </script>
+    
+    
+    }
+
